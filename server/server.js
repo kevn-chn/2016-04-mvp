@@ -1,9 +1,12 @@
 var express = require('express');
-var mongoose = require('mongoose');
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 var morgan = require('morgan');
 var parser = require('body-parser');
+var mongoose = require('mongoose');
 
-var app = express();
 app.use(morgan('dev'));
 app.use(parser.json());
 app.use(express.static(__dirname + '/../client'));
@@ -15,10 +18,17 @@ app.use(express.static(__dirname + '/../client'));
 //   console.log('db opened');
 // });
 
-app.get('*', function(req, res) {
+app.get('/', function(req, res) {
   res.render('../client/index.html');
 });
 
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    console.log('message: ' + msg);
+  });
+});
+
 var port = process.env.PORT || 3000;
-app.listen(port);
-console.log('Listening on port', port, '...');
+http.listen(port, function() {
+  console.log('Listening on port', port, '...');
+});

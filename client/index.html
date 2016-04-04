@@ -5,7 +5,20 @@
   <title>MVP</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
- <h1>something</h1>
+<body ng-app="chatApp">
+  <div class="container" ng-controller="Chat">
+    <h1>something</h1>
+    <ul id="messages">
+      <li class="message" ng-repeat="message in messages | orderBy:'date'">
+        <p>{{message}}</p>
+      </li>
+    </ul>
+    <form ng-submit="sendMessage()" name="msgInput">
+      <input id="m" autocomplete="off"  ng-model="text" /><button>Send</button>
+    </form>
+  </div>
+  <script src="lib/angular.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
