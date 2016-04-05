@@ -5,21 +5,26 @@
   <title>MVP</title>
   <link rel="stylesheet" href="styles.css">
   <script src="lib/angular.min.js"></script>
+  <script src="lib/Tone.min.js"></script>
 </head>
 <body ng-app="chat">
   <div class="container" ng-controller="ChatCtrl">
     <h1>something</h1>
-    <ul id="messages">
-      <li class="message" ng-repeat="message in messages | orderBy:'created_at'">
-        <p>{{message.text}}</p>
-      </li>
-    </ul>
-    <form ng-submit="sendMessage(textInput)" name="inputForm" novalidate>
-      <input id="m" autocomplete="off" ng-model="textInput" placeholder="What do you hear?" required ng-maxlength="150">
-      <button type="submit" ng-disabled="inputForm.$invalid">Send</button>
-    </form>
+    <div id="messages">
+      <div class="message" ng-repeat="message in messages | orderBy:'created_at'">
+        <p class="text">{{message.text}}</p>
+      </div>
+    </div>
+    <div class="form-bar">
+      <form ng-submit="sendMessage(textInput)" name="inputForm" novalidate>
+        <input id="m" autocomplete="off" ng-model="textInput" placeholder="What do you hear?" required ng-maxlength="150">
+        <button type="submit" ng-disabled="inputForm.$invalid">Send</button>
+      </form>
+      <button ng-click="togglePlay()">{{playOrPause.text}}</button>
+    </div>
   </div>
   <script src="/socket.io/socket.io.js"></script>
+  <script src="sound/translator.js"></script>
   <script src="services.js"></script>
   <script src="app.js"></script>
 </body>

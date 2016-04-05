@@ -14,7 +14,8 @@ module.exports = {
   },
 
   addMessage: function (req, res, next) {
-    var text = util.escapeHtml(req.body.text);
+    // var text = util.escapeHtml(req.body.text);
+    var text = req.body.text;
 
     Message.create({text: text})
     .then(function (createdMessage) {
