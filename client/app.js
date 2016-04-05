@@ -3,12 +3,18 @@ angular.module('chatApp', [])
 
 .controller('Chat', function($scope) {
   var socket = io();
-  // $scope.text;
-  $scope.sendMessage = function() {
-    // console.log('testing', $scope.text);
-    socket.emit('chat message', $scope.text);
-    $scope.text = '';
+  $scope.messages = [];
+  $scope.sendMessage = function(msg) {
+    msg = msg || ' ';
+    var textObj = {text: msg};
+    socket.emit('chat message', textObj);
+    $scope.textInput = '';
   };
+  socket.on('chat message', function(msg) {
+    $scope.messages.push(msg);
+    console.log('hearing', $scope.messages);
+    $scope.$apply();
+  });
 })
 .factory('Socket', function ($rootScope) {
   var socket = io.connect();

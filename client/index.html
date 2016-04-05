@@ -10,11 +10,12 @@
     <h1>something</h1>
     <ul id="messages">
       <li class="message" ng-repeat="message in messages | orderBy:'date'">
-        <p>{{message}}</p>
+        <p>{{message.text}}</p>
       </li>
     </ul>
-    <form ng-submit="sendMessage()" name="msgInput">
-      <input id="m" autocomplete="off"  ng-model="text" /><button>Send</button>
+    <form ng-submit="sendMessage(textInput)" name="input-form">
+      <input id="m" autocomplete="off" ng-model="textInput" />
+      <button>Send</button>
     </form>
   </div>
   <script src="lib/angular.min.js"></script>
