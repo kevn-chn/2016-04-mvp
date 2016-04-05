@@ -10,7 +10,7 @@
   <div class="container" ng-controller="ChatCtrl">
     <h1>something</h1>
     <ul id="messages">
-      <li class="message" ng-repeat="message in messages | orderBy:'date'">
+      <li class="message" ng-repeat="message in messages | orderBy:'created_at'">
         <p>{{message.text}}</p>
       </li>
     </ul>

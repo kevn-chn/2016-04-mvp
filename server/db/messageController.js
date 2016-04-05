@@ -4,7 +4,7 @@ var util = require('../config/util.js');
 module.exports = {
 
   recentMessages: function (req, res, next) {
-    Message.find().sort('-createdAt').limit(50)
+    Message.find().sort('-created_at').limit(30)
     .then(function (messages) {
       res.json(messages);
     })
