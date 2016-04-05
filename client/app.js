@@ -18,10 +18,8 @@ angular.module('chat', ['chat.services'])
   $scope.fetchMessages = function() {
     Message.getMsg()
     .then(function(data) {
-      console.log(data);
       data.reverse();
       $scope.messages = makeColumns(data, 4);
-      console.log($scope.messages);
     });
   };
 

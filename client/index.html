@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>wordyLoops</title>
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="styles.css">
   <script src="lib/angular.min.js"></script>
   <script src="lib/Tone.min.js"></script>
@@ -19,7 +20,7 @@
     </table>
     <div class="form-bar">
       <form ng-submit="sendMessage(textInput)" name="inputForm" novalidate>
-        <input id="m" autocomplete="off" ng-model="textInput" placeholder="What do you have to say for yourself?" required ng-maxlength="150">
+        <input id="m" autocomplete="off" ng-model="textInput" placeholder="What do you have to say for yourself?" required ng-maxlength="120">
         <button type="submit" ng-disabled="inputForm.$invalid">Send</button>
       </form>
       <button ng-click="togglePlay()">{{playOrPause.text}}</button>
