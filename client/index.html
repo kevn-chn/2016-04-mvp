@@ -4,22 +4,23 @@
   <meta charset="UTF-8">
   <title>MVP</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="lib/angular.min.js"></script>
 </head>
-<body ng-app="chatApp">
-  <div class="container" ng-controller="Chat">
+<body ng-app="chat">
+  <div class="container" ng-controller="ChatCtrl">
     <h1>something</h1>
     <ul id="messages">
       <li class="message" ng-repeat="message in messages | orderBy:'date'">
         <p>{{message.text}}</p>
       </li>
     </ul>
-    <form ng-submit="sendMessage(textInput)" name="input-form">
-      <input id="m" autocomplete="off" ng-model="textInput" />
-      <button>Send</button>
+    <form ng-submit="sendMessage(textInput)" name="inputForm" novalidate>
+      <input id="m" autocomplete="off" ng-model="textInput" placeholder="What do you hear?" required ng-maxlength="150">
+      <button type="submit" ng-disabled="inputForm.$invalid">Send</button>
     </form>
   </div>
-  <script src="lib/angular.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
+  <script src="services.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

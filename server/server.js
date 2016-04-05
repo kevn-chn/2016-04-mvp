@@ -11,22 +11,30 @@ app.use(morgan('dev'));
 app.use(parser.json());
 app.use(express.static(__dirname + '/../client'));
 
-// mongoose.connect('mongodb://localhost/chat');
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error...'));
-// db.once('open', function callback() {
-//   console.log('db opened');
-// });
+mongoose.connect('mongodb://localhost/chat');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error...'));
+db.once('open', function callback() {
+  console.log('db connected');
+});
+
+
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    console.log('message: ' + msg.text);
+    io.emit('chat message', msg);
+  });
+});
+
+var msgController = require('./db/messageController.js');
 
 app.get('/', function(req, res) {
   res.render('../client/index.html');
 });
-
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    console.log('message: ' + msg);
-    io.emit('chat message', msg);
-  });
+app.get('/messages', msgController.recentMessages);
+app.post('/messages', msgController.addMessage);
+app.get('/*', function(req, res) {
+  res.redirect('/');
 });
 
 var port = process.env.PORT || 3000;
