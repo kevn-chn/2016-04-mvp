@@ -7,10 +7,21 @@ angular.module('chat', ['chat.services'])
     value: false
   };
   
+  function makeColumns(array, size) {
+    var newArray = [];
+    for (var i=0; i<array.length; i+=size) {
+      newArray.push(array.slice(i, i+size));
+    }
+    return newArray;
+  }
+
   $scope.fetchMessages = function() {
     Message.getMsg()
     .then(function(data) {
-      $scope.messages = data;
+      console.log(data);
+      data.reverse();
+      $scope.messages = makeColumns(data, 4);
+      console.log($scope.messages);
     });
   };
 

@@ -2,22 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MVP</title>
+  <title>wordyLoops</title>
   <link rel="stylesheet" href="styles.css">
   <script src="lib/angular.min.js"></script>
   <script src="lib/Tone.min.js"></script>
 </head>
 <body ng-app="chat">
+  <h1>wordyLoops</h1>
   <div class="container" ng-controller="ChatCtrl">
-    <h1>something</h1>
-    <div id="messages">
-      <div class="message" ng-repeat="message in messages | orderBy:'created_at'">
-        <p class="text">{{message.text}}</p>
-      </div>
-    </div>
+    <table id="messages">
+      <td class="column" ng-repeat="column in messages">
+        <div class="message" ng-repeat="message in column | orderBy:'created_at'">
+          <p>{{message.text}}</p>
+        </div>
+      </td>
+    </table>
     <div class="form-bar">
       <form ng-submit="sendMessage(textInput)" name="inputForm" novalidate>
-        <input id="m" autocomplete="off" ng-model="textInput" placeholder="What do you hear?" required ng-maxlength="150">
+        <input id="m" autocomplete="off" ng-model="textInput" placeholder="What do you have to say for yourself?" required ng-maxlength="150">
         <button type="submit" ng-disabled="inputForm.$invalid">Send</button>
       </form>
       <button ng-click="togglePlay()">{{playOrPause.text}}</button>

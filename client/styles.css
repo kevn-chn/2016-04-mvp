@@ -1,25 +1,27 @@
 html {
-  margin: 0;
-  padding: 0;
+
 }
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: 'Futura', sans-serif;
   font-size: 1.5em;
 }
 
-/*.container {
-  margin: 0;
-  padding: 0;
-}*/
+h1 {
+  margin: 10px;
+}
+
+.container {
+}
 
 .form-bar {
-  background: #000;
-  /*padding: 3px;*/
+  background: black;
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 50px;
 }
 
 form {
@@ -27,36 +29,62 @@ form {
 }
 
 form input {
+  padding: 0;
+  padding-left: 0.5%;
   border: 0;
-  padding: 10px;
-  width: 80%;
-  margin-right: .5%;
+  height: 40px;
+  font-size: 14px;
+  width: 79%;
+  margin-left: .5%;
+  border-radius: 3px;
 }
 
 button {
-  width: 7%;
-  /*background: rgb(130, 224, 255);*/
+  background-color: white;
+  border-radius: 3px;
+  padding: 2px;
+  width: 9%;
+  height: 40px;
   border: none;
-  padding: 12px;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: auto;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  color: white;
+  background-color: lightgray;
+  transition: all 0.3s ease;
+}
+
+input:focus, button:focus {
+  outline: none;
+}
+
+.column {
+  margin: 0;
+  margin-bottom: 60px;
+  display: inline-block;
 }
 
 .message {
   border-radius: 15px;
-  display: inline-block;
   background-color: black;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   padding: 5px;
   margin: 10px;
-  box-sizing: border-box;
+  margin-left: 5px;
+  margin-right: 5px;
+  transition: all 0.3s ease;
 }
 
 .message:hover {
   background-color: white;
+  box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.5);
 }
 
 .message .text {
-  /*display: none;*/
   display: inline;
 }
-
