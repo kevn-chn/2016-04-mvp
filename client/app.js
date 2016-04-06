@@ -47,14 +47,12 @@ angular.module('chat', ['chat.services', 'chat.sounds', 'chat.loop'])
   };
 
   $scope.highlight = function() {
-    console.log($scope.highlightCol);
     if ($scope.playOrPause.value) {
       setTimeout($scope.highlight, 2000);
       var index = $scope.highlightCol;
       var length = $scope.messages.length;
       $scope.highlightCol = index == length - 1 ? 0: index+1;
     }
-    console.log($scope.highlightCol);
     $scope.$apply();
   };
 
