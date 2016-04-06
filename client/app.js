@@ -6,6 +6,7 @@ angular.module('chat', ['chat.services', 'chat.sounds', 'chat.loop'])
     text: 'Play',
     value: false
   };
+  $scope.highlightCol = -1;
 
   function makeColumns(array, size) {
     var newArray = [];
@@ -32,14 +33,29 @@ angular.module('chat', ['chat.services', 'chat.sounds', 'chat.loop'])
   };
 
   $scope.togglePlay = function() {
-    if ($scope.playOrPause.value) {
+    var check = $scope.playOrPause.value;
+    $scope.playOrPause.value = !$scope.playOrPause.value;
+    if (check) {
       $scope.playOrPause.text = 'Play';
       Loop.stop();
+      $scope.highlightCol = -1;
     } else {
       $scope.playOrPause.text = 'Pause';
       Loop.start();
+      $scope.highlight();
     }
-    $scope.playOrPause.value = !$scope.playOrPause.value;
+  };
+
+  $scope.highlight = function() {
+    console.log($scope.highlightCol);
+    if ($scope.playOrPause.value) {
+      setTimeout($scope.highlight, 2000);
+      var index = $scope.highlightCol;
+      var length = $scope.messages.length;
+      $scope.highlightCol = index == length - 1 ? 0: index+1;
+    }
+    console.log($scope.highlightCol);
+    $scope.$apply();
   };
 
   Socket.on('chat message', function(msg) {

@@ -106,12 +106,12 @@ input:focus, button:focus {
   transition: all 1s ease;
 }
 
-.message:hover {
+.message:hover, .column.highlighted .message {
   background-color: white;
   box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.5);
 }
 
-.message:hover p {
+.message:hover p, .column.highlighted .message p {
   color: lightgray;
 }
 

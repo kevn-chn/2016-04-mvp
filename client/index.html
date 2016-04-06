@@ -12,7 +12,8 @@
   <h1>wordyLoops</h1>
   <div class="container" ng-controller="ChatCtrl">
     <table id="messages">
-      <td class="column" ng-repeat="column in messages">
+      <td class="column" ng-repeat="column in messages" 
+        ng-class="{true: 'highlighted', false: ''}[$index == highlightCol]">
         <div class="message" ng-repeat="message in column | orderBy:'created_at'">
           <p>{{message.text}}</p>
         </div>

@@ -145,9 +145,9 @@ angular.module('chat.sounds', [])
   return {
     createParts: function(patterns, start, stop) {
       hiHat(patterns[0], start + ':0', stop + ':0');
-      bass(patterns[1], start + ':1', stop + ':1');
+      bass(patterns[1], start + ':0', stop + ':0');
       synth(patterns[2], start + ':0', stop + ':0');
-      bleep(patterns[3], start + ':1', stop + ':1');
+      bleep(patterns[3], start + ':0', stop + ':0');
       // kick(patterns[2], start + ':0', stop + ':0');
     }
   };
