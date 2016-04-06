@@ -1,12 +1,12 @@
-angular.module('chat', ['chat.services'])
+angular.module('chat', ['chat.services', 'chat.sounds', 'chat.loop'])
 
-.controller('ChatCtrl', function($scope, Socket, Message) {
+.controller('ChatCtrl', function($scope, Socket, Message, Sounds, Loop) {
   $scope.messages = [];
   $scope.playOrPause = {
     text: 'Play',
     value: false
   };
-  
+
   function makeColumns(array, size) {
     var newArray = [];
     for (var i=0; i<array.length; i+=size) {
@@ -20,6 +20,7 @@ angular.module('chat', ['chat.services'])
     .then(function(data) {
       data.reverse();
       $scope.messages = makeColumns(data, 4);
+      Loop.update($scope.messages);
     });
   };
 
@@ -31,11 +32,12 @@ angular.module('chat', ['chat.services'])
   };
 
   $scope.togglePlay = function() {
-    $scope.playOrPause.text = $scope.playOrPause.text === 'Pause' ? 'Play' : 'Pause';
     if ($scope.playOrPause.value) {
-      Tone.Transport.stop();
+      $scope.playOrPause.text = 'Play';
+      Loop.stop();
     } else {
-      Tone.Transport.start();
+      $scope.playOrPause.text = 'Pause';
+      Loop.start();
     }
     $scope.playOrPause.value = !$scope.playOrPause.value;
   };

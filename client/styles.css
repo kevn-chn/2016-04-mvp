@@ -10,11 +10,19 @@ body {
 }
 
 h1 {
+  position: fixed;
+  top: 0;
   margin: 10px;
   font-weight: 100;
 }
 
 .container {
+  margin-top: 75px;
+  position: relative;
+}
+
+table#messages{
+  white-space: nowrap;
 }
 
 .form-bar {
@@ -91,6 +99,7 @@ input:focus, button:focus {
   display: inline;
   width: 80%;
   text-align: center;
+  white-space: normal;
   word-wrap: break-word;
   padding: 10px;
   color: black;
